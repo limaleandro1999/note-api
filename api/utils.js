@@ -26,7 +26,7 @@ function failureResponse(error) {
       message: error.message ? error.message : '',
     }),
     headers: getResponseHeaders(),
-  }
+  };
 }
 
 function getUserId(headers) {

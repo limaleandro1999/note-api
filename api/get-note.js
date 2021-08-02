@@ -1,5 +1,10 @@
 const _ = require('underscore');
-const { successResponse, failureResponse, tableName, dynamoDb } = require('./utils');
+const {
+  successResponse,
+  failureResponse,
+  tableName,
+  dynamoDb,
+} = require('./utils');
 
 exports.handler = async (event) => {
   try {
@@ -11,7 +16,7 @@ exports.handler = async (event) => {
       ExpressionAttributeValues: {
         ':note_id': noteId,
       },
-      Limit: 1
+      Limit: 1,
     };
 
     const data = await dynamoDb.query(params).promise();
@@ -19,14 +24,14 @@ exports.handler = async (event) => {
     if (!_.isEmpty(data.Items)) {
       return successResponse(data.Items[0], 200);
     } else {
-      return failureResponse({ 
-        name: 'Not found', 
-        message: `Note with id ${noteId} not found`, 
-        statusCode: 404 
+      return failureResponse({
+        name: 'Not found',
+        message: `Note with id ${noteId} not found`,
+        statusCode: 404,
       });
     }
   } catch (error) {
-    console.log('Error', error)
+    console.log('Error', error);
     return failureResponse(error);
-  };
-}
+  }
+};

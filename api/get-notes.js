@@ -1,4 +1,10 @@
-const { successResponse, failureResponse, tableName, getUserId, dynamoDb } = require('./utils');
+const {
+  successResponse,
+  failureResponse,
+  tableName,
+  getUserId,
+  dynamoDb,
+} = require('./utils');
 
 exports.handler = async (event) => {
   try {
@@ -29,7 +35,7 @@ exports.handler = async (event) => {
 
     return successResponse(data, 200);
   } catch (error) {
-    console.log('Error', error)
+    console.log('Error', error);
     return failureResponse(error);
-  };
-}
+  }
+};
